@@ -2,7 +2,7 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image'; // Import the next/image component
+import Image from 'next/image';
 import { useState } from 'react';
 
 export default function Header() {
@@ -23,21 +23,21 @@ export default function Header() {
     // Using primary blue for background
     <header className="bg-[#1A5F7A] text-white sticky top-0 z-50 shadow-md">
       <div className="container mx-auto flex justify-between items-center p-4">
-        {/* Logo */}
-        <Link href="/" className="flex items-center">
-          {/* Use next/image component with SVG */}
+        {/* Logo and Acronym Link */}
+        <Link href="/" className="flex items-center gap-3"> {/* Added gap-3 for spacing */}
+          {/* Logo Image */}
           <Image
-            src="/logo.svg" // *** UPDATED: Path to your SVG logo in the public folder ***
-            alt="GCIN Logo" // **Important:** Descriptive alt text
-            width={500} // **Required:** Specify a width (controls aspect ratio & prevents layout shift)
-            height={500} // **Required:** Specify a height (controls aspect ratio & prevents layout shift)
-                       // Choose width/height that match your SVG's intended display aspect ratio
-            priority // Good for logos in the header
-            className="h-11 w-auto" // Example sizing using Tailwind - adjust as needed
-                                     // This controls the actual rendered size
+            src="/logo.svg"
+            alt="GCIN Logo"
+            width={500} // Use actual aspect ratio width
+            height={500} // Use actual aspect ratio height
+            priority
+            className="h-10 w-auto" // Adjusted height slightly, you can fine-tune h-10 or h-11
           />
-          {/* Optional: Add text next to logo if desired */}
-          {/* <span className="ml-3 text-2xl font-bold font-['Montserrat']">GCIN</span> */}
+          {/* Acronym Text Added Here */}
+          <span className="font-['Montserrat'] text-2xl font-bold"> {/* Use Montserrat, bold, adjust size (text-2xl/3xl) */}
+            GCIN
+          </span>
         </Link>
 
         {/* Desktop Navigation */}
