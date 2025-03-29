@@ -1,6 +1,5 @@
 // src/app/page.tsx
 import Link from 'next/link';
-import Image from 'next/image'; // Make sure Image is imported
 
 // *** REMOVED the InteractiveVisualizationPlaceholder component function ***
 
@@ -19,46 +18,44 @@ const BlogPostCardPlaceholder = ({ title }: { title: string }) => {
 
 export default function HomePage() {
   return (
-    // Using the light background color from the design system
     <main className="flex min-h-screen flex-col items-center bg-[#F5F7FA]">
 
-      {/* Hero Section */}
-      <section className="w-full text-center py-16 md:py-24 px-4 bg-gradient-to-b from-white to-[#F5F7FA]">
-        <div className="container mx-auto max-w-4xl">
+      {/* Hero Section - MODIFIED FOR BACKGROUND IMAGE */}
+      <section
+        className="w-full relative text-center py-24 md:py-36 px-4 text-white" // Added relative positioning, text-white
+        style={{
+          backgroundImage: `url('/5.png')`, // Set background image
+          backgroundSize: 'cover',          // Cover the entire section
+          backgroundPosition: 'center',     // Center the image
+        }}
+      >
+        {/* Semi-transparent overlay for text readability */}
+        <div 
+          className="absolute inset-0 z-0" // REMOVED bg-black and bg-opacity-30
+          style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }} // Direct RGBA: Black at 30% opacity>
+        ></div>
 
-          {/* === Visualization Image Replaces Placeholder === */}
-          <div className="my-8 rounded-lg overflow-hidden shadow-lg"> {/* Optional: Add container styling */}
-            <Image
-              src="/5.png" // Path relative to the public folder
-              alt="Abstract visualization of the GCIN interconnected network with glowing nodes and data streams" // ** Important: Descriptive Alt Text **
-              width={1920} // ** Required: Replace with ACTUAL width of 5.png **
-              height={1080} // ** Required: Replace with ACTUAL height of 5.png **
-                           // (Using 1920x1080 as a 16:9 placeholder)
-              priority // Good for hero images (LCP)
-              className="w-full h-auto" // Make image responsive within its container
-            />
-          </div>
-          {/* =============================================== */}
-
-          {/* Headline & Sub-headline */}
-          <h1 className="text-4xl md:text-5xl font-bold font-['Montserrat'] text-[#1A5F7A] mb-4">
+        {/* Content container - positioned above the overlay */}
+        <div className="container mx-auto max-w-4xl relative z-10">
+          {/* Headline & Sub-headline - Now white text */}
+          <h1 className="text-4xl md:text-5xl font-bold font-['Montserrat'] mb-4">
             GLOBAL COLLECTIVE INTELLIGENCE NETWORK
           </h1>
-          <p className="text-lg md:text-xl text-[#4A4A4A] font-['Open_Sans'] mb-8 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl font-['Open_Sans'] mb-8 max-w-2xl mx-auto">
             Building the infrastructure for a post-labor economy through collective intelligence and decentralized governance.
           </p>
 
-          {/* Call to Action Buttons */}
+          {/* Call to Action Buttons - Adjusted styling for contrast */}
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link
               href="/visualization-hub"
-              className="px-8 py-3 bg-[#FF7F50] text-white font-semibold rounded-md hover:bg-opacity-80 transition-colors font-['Open_Sans']"
+              className="px-8 py-3 bg-[#FF7F50] text-white font-semibold rounded-md hover:bg-opacity-80 transition-colors font-['Open_Sans']" // Accent Orange
             >
               Explore the Network
             </Link>
             <Link
               href="/get-involved"
-              className="px-8 py-3 bg-transparent border-2 border-[#1A5F7A] text-[#1A5F7A] font-semibold rounded-md hover:bg-[#1A5F7A] hover:text-white transition-colors font-['Open_Sans']"
+              className="px-8 py-3 bg-transparent border-2 border-white text-white font-semibold rounded-md hover:bg-white hover:text-[#1A5F7A] transition-colors font-['Open_Sans']" // White outline button
             >
               Get Involved
             </Link>
