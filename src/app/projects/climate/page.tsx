@@ -1,31 +1,34 @@
 // src/app/projects/climate/page.tsx
 import Image from 'next/image';
 import Link from 'next/link';
+import ProjectSelector from '@/components/ProjectSelector'; // Import the selector
 
 export default function ClimateProjectPage() {
   return (
-    <main className="flex min-h-screen flex-col items-center p-8 md:p-16 lg:p-24 bg-gray-50">
-      <div className="container mx-auto max-w-5xl bg-white p-6 md:p-10 rounded-lg shadow-lg">
+    // Main container, includes selector then page content div
+    <main className="flex min-h-screen flex-col items-center bg-gray-50 pt-0">
+      <ProjectSelector /> {/* Selector added here */}
+
+      {/* Page content container */}
+      <div className="container mx-auto max-w-5xl bg-white p-6 md:p-10 rounded-lg shadow-lg mt-8 mb-16"> {/* Added top/bottom margin */}
         {/* Title */}
         <h1 className="text-3xl md:text-4xl font-bold font-['Montserrat'] text-[#1A5F7A] mb-8 text-center">
           Flagship Initiative: Climate Action
         </h1>
 
-        {/* Top Section: Image Left, Text Right (on md screens and up) */}
+        {/* Top Section: Image Left, Text Right */}
         <div className="flex flex-col md:flex-row gap-8 mb-10 items-center">
           {/* Image Column */}
           <div className="w-full md:w-1/2 flex-shrink-0">
             <div className="rounded-lg overflow-hidden shadow-md aspect-video relative">
               <Image
-                src="/climate.jpg" // Assumes climate.jpg is in /public
+                src="/climate.jpg"
                 alt="Conceptual image representing renewable energy coordination or climate action data analysis"
-                fill // Use fill to cover the container
-                className="object-cover" // Ensure image covers the area
+                fill
+                className="object-cover"
                 priority
-                // Add sizes for responsive optimization if needed
                 // sizes="(max-width: 768px) 100vw, 50vw"
               />
-               {/* Remove width/height when using fill, ensure parent has position relative & aspect ratio/size */}
             </div>
           </div>
           {/* Text Column */}
@@ -40,9 +43,8 @@ export default function ClimateProjectPage() {
             </div>
           </div>
         </div>
-        {/* End Top Section */}
 
-        {/* Our Approach Section - Fixed Styling */}
+        {/* Our Approach Section */}
         <h2 className="text-2xl font-semibold font-['Montserrat'] text-[#1A5F7A] mt-10 mb-4">
           Our Approach
         </h2>
@@ -54,7 +56,7 @@ export default function ClimateProjectPage() {
           <li><span className="font-semibold">Cross-Domain Integration:</span> Linking climate solutions with sustainable food systems, education, and economic equity.</li>
         </ul>
 
-        {/* Status/Progress (High-level) */}
+        {/* Status/Progress */}
         <h2 className="text-2xl font-semibold font-['Montserrat'] text-[#1A5F7A] mt-10 mb-4">
           Current Status
         </h2>

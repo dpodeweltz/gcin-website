@@ -1,23 +1,28 @@
 // src/app/projects/education/page.tsx
 import Image from 'next/image';
 import Link from 'next/link';
+import ProjectSelector from '@/components/ProjectSelector'; // Import the selector
 
 export default function EducationProjectPage() {
   return (
-    <main className="flex min-h-screen flex-col items-center p-8 md:p-16 lg:p-24 bg-gray-50">
-      <div className="container mx-auto max-w-5xl bg-white p-6 md:p-10 rounded-lg shadow-lg">
+    // Main container, includes selector then page content div
+    <main className="flex min-h-screen flex-col items-center bg-gray-50 pt-0">
+       <ProjectSelector /> {/* Selector added here */}
+
+       {/* Page content container */}
+       <div className="container mx-auto max-w-5xl bg-white p-6 md:p-10 rounded-lg shadow-lg mt-8 mb-16"> {/* Added top/bottom margin */}
         {/* Title */}
         <h1 className="text-3xl md:text-4xl font-bold font-['Montserrat'] text-[#1A5F7A] mb-8 text-center">
           Education Resource Optimization Initiative
         </h1>
 
-        {/* Top Section: Image Left, Text Right (on md screens and up) */}
+        {/* Top Section: Image Left, Text Right */}
         <div className="flex flex-col md:flex-row gap-8 mb-10 items-center">
           {/* Image Column */}
            <div className="w-full md:w-1/2 flex-shrink-0">
              <div className="rounded-lg overflow-hidden shadow-md aspect-video relative">
                 <Image
-                  src="/education.jpg" // Assumes education.jpg is in /public
+                  src="/education.jpg"
                   alt="Image representing learning pathways, knowledge sharing, or diverse educational settings"
                   fill
                   className="object-cover"
@@ -28,7 +33,7 @@ export default function EducationProjectPage() {
           {/* Text Column */}
           <div className="w-full md:w-1/2">
             <div className="text-lg text-[#4A4A4A] font-['Open_Sans'] leading-relaxed space-y-4">
-              <p>
+               <p>
                 The transition to a post-labor economy necessitates a fundamental shift in how we approach learning and skill development. Continuous adaptation and lifelong learning become paramount. This GCIN initiative aims to create an open, accessible, and intelligent ecosystem for education, empowering individuals to navigate their learning journeys effectively.
               </p>
               <p>
@@ -37,10 +42,9 @@ export default function EducationProjectPage() {
             </div>
           </div>
         </div>
-        {/* End Top Section */}
 
-
-        {/* Our Approach Section - Fixed Styling */}
+        
+        {/* Our Approach Section */}
         <h2 className="text-2xl font-semibold font-['Montserrat'] text-[#1A5F7A] mt-10 mb-4">
           Our Approach
         </h2>
@@ -52,7 +56,7 @@ export default function EducationProjectPage() {
           <li><span className="font-semibold">Novel Credentialing:</span> Exploring new ways to recognize diverse skills and learning.</li>
         </ul>
 
-        {/* Status/Progress (High-level) */}
+        {/* Status/Progress */}
         <h2 className="text-2xl font-semibold font-['Montserrat'] text-[#1A5F7A] mt-10 mb-4">
           Current Status
         </h2>
@@ -75,7 +79,7 @@ export default function EducationProjectPage() {
             Learn How to Participate
           </Link>
         </div>
-      </div>
+       </div>
     </main>
   );
 }

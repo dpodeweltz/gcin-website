@@ -1,23 +1,28 @@
 // src/app/projects/food/page.tsx
 import Image from 'next/image';
 import Link from 'next/link';
+import ProjectSelector from '@/components/ProjectSelector'; // Import the selector
 
 export default function FoodProjectPage() {
   return (
-    <main className="flex min-h-screen flex-col items-center p-8 md:p-16 lg:p-24 bg-gray-50">
-      <div className="container mx-auto max-w-5xl bg-white p-6 md:p-10 rounded-lg shadow-lg">
+    // Main container, includes selector then page content div
+    <main className="flex min-h-screen flex-col items-center bg-gray-50 pt-0">
+       <ProjectSelector /> {/* Selector added here */}
+
+       {/* Page content container */}
+       <div className="container mx-auto max-w-5xl bg-white p-6 md:p-10 rounded-lg shadow-lg mt-8 mb-16"> {/* Added top/bottom margin */}
         {/* Title */}
         <h1 className="text-3xl md:text-4xl font-bold font-['Montserrat'] text-[#1A5F7A] mb-8 text-center">
           Food Systems Transformation Initiative
         </h1>
 
-        {/* Top Section: Image Left, Text Right (on md screens and up) */}
+        {/* Top Section: Image Left, Text Right */}
         <div className="flex flex-col md:flex-row gap-8 mb-10 items-center">
           {/* Image Column */}
           <div className="w-full md:w-1/2 flex-shrink-0">
              <div className="rounded-lg overflow-hidden shadow-md aspect-video relative">
                 <Image
-                  src="/food.jpg" // Assumes food.jpg is in /public
+                  src="/food.jpg"
                   alt="Image representing sustainable food systems, e.g., vertical farming or plant-based products"
                   fill
                   className="object-cover"
@@ -37,9 +42,8 @@ export default function FoodProjectPage() {
             </div>
           </div>
         </div>
-        {/* End Top Section */}
 
-        {/* Our Approach Section - Fixed Styling */}
+        {/* Our Approach Section */}
         <h2 className="text-2xl font-semibold font-['Montserrat'] text-[#1A5F7A] mt-10 mb-4">
           Our Approach
         </h2>
@@ -51,7 +55,7 @@ export default function FoodProjectPage() {
           <li><span className="font-semibold">Consumer Engagement:</span> Building demand for sustainable and healthy food options.</li>
         </ul>
 
-        {/* Status/Progress (High-level) */}
+        {/* Status/Progress */}
         <h2 className="text-2xl font-semibold font-['Montserrat'] text-[#1A5F7A] mt-10 mb-4">
           Current Status
         </h2>
@@ -74,7 +78,7 @@ export default function FoodProjectPage() {
             Learn How to Participate
           </Link>
         </div>
-      </div>
+       </div>
     </main>
   );
 }
