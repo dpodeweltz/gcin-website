@@ -1,5 +1,5 @@
 // src/app/vision/page.tsx
-import Image from 'next/image'; // Import if you use <Image> for placeholders
+// import Image from 'next/image'; // Import if you use <Image> for placeholders
 import Link from 'next/link';   // Import if you add links/buttons
 
 export default function VisionPage() {

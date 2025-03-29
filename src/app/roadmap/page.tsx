@@ -1,6 +1,6 @@
 // src/app/roadmap/page.tsx
-import Image from 'next/image'; // Import if using Image for placeholders
-import Link from 'next/link';   // Import if adding links
+// import Image from 'next/image'; // Import if using Image for placeholders
+// import Link from 'next/link';   // Import if adding links
 
 export default function RoadmapPage() {
   return (
