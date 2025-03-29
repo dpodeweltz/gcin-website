@@ -46,7 +46,7 @@ export default function Footer() {
                     id="newsletter-email"
                     type="email"
                     placeholder="your.email@example.com"
-                    className="p-2 rounded text-gray-800" // Style the input
+                    className="p-2 rounded text-white-800" // Style the input
                  />
                  <button
                     type="submit"
