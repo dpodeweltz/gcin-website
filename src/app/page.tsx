@@ -1,5 +1,6 @@
 // src/app/page.tsx
 import Link from 'next/link';
+import HeroVisualization from '@/components/HeroVisualization'; // Import the component
 
 // *** REMOVED the InteractiveVisualizationPlaceholder component function ***
 
@@ -20,46 +21,29 @@ export default function HomePage() {
   return (
     <main className="flex min-h-screen flex-col items-center bg-[#F5F7FA]">
 
-      {/* Hero Section - MODIFIED FOR BACKGROUND IMAGE */}
+      {/* Hero Section - MODIFIED FOR LIVE VISUALIZATION */}
       <section
-        className="w-full relative text-center py-24 md:py-36 px-4 text-white" // Added relative positioning, text-white
-        style={{
-          backgroundImage: `url('/5.png')`, // Set background image
-          backgroundSize: 'cover',          // Cover the entire section
-          backgroundPosition: 'center',     // Center the image
-        }}
+        className="w-full relative text-center py-24 md:py-36 px-4 text-white overflow-hidden" // Added relative, overflow-hidden
+        // Remove background image style here
       >
-        {/* Semi-transparent overlay for text readability */}
-        <div 
-          className="absolute inset-0 z-0" // REMOVED bg-black and bg-opacity-30
-          style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }} // Direct RGBA: Black at 30% opacity>
-        ></div>
+        {/* Live Visualization Component - positioned behind text */}
+        <HeroVisualization />
 
-        {/* Content container - positioned above the overlay */}
+        {/* Content container - positioned above the visualization */}
         <div className="container mx-auto max-w-4xl relative z-10">
-          {/* Headline & Sub-headline - Now white text */}
-          <h1 className="text-4xl md:text-5xl font-bold font-['Montserrat'] mb-4">
-            GLOBAL COLLECTIVE INTELLIGENCE NETWORK
-          </h1>
-          <p className="text-lg md:text-xl font-['Open_Sans'] mb-8 max-w-2xl mx-auto">
-            Building the infrastructure for a post-labor economy through collective intelligence and decentralized governance.
-          </p>
-
-          {/* Call to Action Buttons - Adjusted styling for contrast */}
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link
-              href="/visualization-hub"
-              className="px-8 py-3 bg-[#FF7F50] text-white font-semibold rounded-md hover:bg-opacity-80 transition-colors font-['Open_Sans']" // Accent Orange
-            >
-              Explore the Network
-            </Link>
-            <Link
-              href="/get-involved"
-              className="px-8 py-3 bg-transparent border-2 border-white text-white font-semibold rounded-md hover:bg-white hover:text-[#1A5F7A] transition-colors font-['Open_Sans']" // White outline button
-            >
-              Get Involved
-            </Link>
-          </div>
+           {/* Add a subtle background to text container if needed for readability */}
+           {/* <div className="bg-black bg-opacity-30 p-6 rounded-lg inline-block"> */}
+             <h1 className="text-4xl md:text-5xl font-bold font-['Montserrat'] mb-4">
+               GLOBAL COLLECTIVE INTELLIGENCE NETWORK
+             </h1>
+             <p className="text-lg md:text-xl font-['Open_Sans'] mb-8 max-w-2xl mx-auto">
+               Building the infrastructure for a post-labor economy through collective intelligence and decentralized governance.
+             </p>
+             {/* Call to Action Buttons */}
+             <div className="flex flex-col sm:flex-row justify-center gap-4">
+               {/* ... buttons ... */}
+             </div>
+           {/* </div> */}
         </div>
       </section>
 
