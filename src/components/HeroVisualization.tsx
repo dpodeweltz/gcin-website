@@ -41,11 +41,11 @@ function PointCloudEffects() {
     const pointData = usePointData(6000);
 
     const flowData = useMemo(() => {
-        const count = 150; // Increased flow points slightly
+        const count = 150;
         const positions = new Float32Array(count * 3);
         const originalPositions = [];
         const targetScales = [];
-        const animationOffsets = []; // Add random offset for variety
+        const animationOffsets = [];
 
         for (let i = 0; i < count; i++) {
             const mainIndex = Math.floor(Math.random() * (pointData.positions.length / 3)) * 3;
@@ -56,8 +56,8 @@ function PointCloudEffects() {
             positions[i * 3 + 1] = y;
             positions[i * 3 + 2] = z;
             originalPositions.push(new THREE.Vector3(x, y, z));
-            targetScales.push(Math.random() * 4 + 1); // Slightly larger max scale
-            animationOffsets.push(Math.random() * Math.PI * 2); // Random start time
+            targetScales.push(Math.random() * 4 + 1);
+            animationOffsets.push(Math.random() * Math.PI * 2);
         }
         return { positions, originalPositions, targetScales, animationOffsets };
     }, [pointData.positions]);
@@ -71,43 +71,35 @@ function PointCloudEffects() {
             pointsRef.current.rotation.y += delta * 0.05;
         }
 
-        // Animate main point size (Subtle pulse)
         if (materialRef.current) {
-            materialRef.current.size = 0.12 + Math.sin(elapsedTime * 0.5) * 0.01; // Increased base, smaller pulse
+            materialRef.current.size = 0.12 + Math.sin(elapsedTime * 0.5) * 0.01;
         }
 
-        // Animate "Flow" points
         if (flowPointsRef.current && flowPointsRef.current.geometry.attributes.position) {
             const positions = flowPointsRef.current.geometry.attributes.position.array as Float32Array;
-            const cycleDuration = 4; // Faster cycle
+            const cycleDuration = 4;
 
             for (let i = 0; i < flowData.originalPositions.length; i++) {
                 const progress = ((elapsedTime + flowData.animationOffsets[i]) % cycleDuration) / cycleDuration;
-                const easedProgress = Math.sin(progress * Math.PI); // 0 -> 1 -> 0
+                const easedProgress = Math.sin(progress * Math.PI);
 
                 const originalPos = flowData.originalPositions[i];
                 const targetScale = flowData.targetScales[i];
                 const currentScale = MathUtils.lerp(1, targetScale, easedProgress);
                 currentScales[i] = currentScale;
 
-                // Animate position slightly outward
-                const currentPos = originalPos.clone().multiplyScalar(MathUtils.lerp(1, 1.15, easedProgress)); // Move 15% outwards
+                const currentPos = originalPos.clone().multiplyScalar(MathUtils.lerp(1, 1.15, easedProgress));
 
                 positions[i * 3] = currentPos.x;
                 positions[i * 3 + 1] = currentPos.y;
                 positions[i * 3 + 2] = currentPos.z;
 
-                // Animate size/opacity of flow points
                 if (flowMaterialRef.current) {
-                    // Make points larger and fully opaque at peak, fade otherwise
-                    flowMaterialRef.current.size = MathUtils.lerp(0.05, 0.3, easedProgress); // More size variation
-                    flowMaterialRef.current.opacity = easedProgress * 0.8 + 0.2; // Fade in/out more
+                    flowMaterialRef.current.size = MathUtils.lerp(0.05, 0.3, easedProgress);
+                    flowMaterialRef.current.opacity = easedProgress * 0.8 + 0.2;
                 }
             }
             flowPointsRef.current.geometry.attributes.position.needsUpdate = true;
-            // Important: If material props are uniform, setting needsUpdate isn't needed.
-            // If we were setting individual point sizes/opacities (more complex),
-            // we would need geometry.attributes.size.needsUpdate = true etc.
         }
     });
 
@@ -118,11 +110,11 @@ function PointCloudEffects() {
                 <PointMaterial
                     ref={materialRef}
                     transparent
-                    vertexColors // Use the generated colors!
-                    size={0.12} // Base size
+                    vertexColors // Use the generated colors
+                    size={0.12}
                     sizeAttenuation={true}
                     depthWrite={false}
-                    blending={THREE.AdditiveBlending}
+                    blending={THREE.AdditiveBlending} // Important for brightness
                 />
             </Points>
 
@@ -135,7 +127,7 @@ function PointCloudEffects() {
                     size={0.15}
                     sizeAttenuation={true}
                     depthWrite={false}
-                    blending={THREE.AdditiveBlending}
+                    blending={THREE.AdditiveBlending} // Important for brightness/glow
                     opacity={0.8}
                 />
             </Points>
@@ -146,23 +138,46 @@ function PointCloudEffects() {
 export default function HeroVisualization() {
     return (
         <div className="absolute inset-0 z-0 bg-[#0c1a1f]">
-            <Canvas camera={{ position: [0, 0, 20], fov: 50 }}> {/* Slightly backed up camera */}
+            <Canvas camera={{ position: [0, 0, 20], fov: 50 }}>
                 <color attach="background" args={['#0c1a1f']} />
                 <fog attach="fog" args={['#0c1a1f', 18, 35]} />
 
-                <ambientLight intensity={0.15} /> {/* Slightly brighter ambient */}
-                {/* *** FIXED HemisphereLight props *** */}
+                <ambientLight intensity={0.1} /> {/* Keep ambient low */}
+                {/* *** FIXED HemisphereLight props using args *** */}
                 <hemisphereLight args={['#8A2BE2', '#2E8B57', 0.8]} /> {/* sky, ground, intensity */}
 
-                {/* *** STRONGER Spotlights *** */}
+                {/* *** STRONGER Spotlights with wider angle *** */}
                 <spotLight
-                    position={[-25, 20, -10]} intensity={100.0} color="#FF7F50" // Much stronger intensity
-                    angle={0.4} penumbra={0.6} distance={150} castShadow={false} // Wider angle
+                    position={[-25, 15, -15]} // Adjusted position slightly
+                    intensity={100} // *** Significantly Increased Intensity ***
+                    color="#FF7F50" // Orange
+                    angle={0.6} // Wider angle
+                    penumbra={0.8} // Softer edge
+                    distance={200} // Increased distance
+                    decay={2} // Control falloff (lower = slower falloff)
+                    castShadow={false}
                 />
                 <spotLight
-                    position={[25, 20, 10]} intensity={100.0} color="#8A2BE2" // Much stronger intensity
-                    angle={0.4} penumbra={0.6} distance={150} castShadow={false} // Wider angle
+                    position={[25, 15, 15]} // Adjusted position slightly
+                    intensity={100} // *** Significantly Increased Intensity ***
+                    color="#8A2BE2" // Violet
+                    angle={0.6} // Wider angle
+                    penumbra={0.8} // Softer edge
+                    distance={200} // Increased distance
+                    decay={2} // Control falloff
+                    castShadow={false}
                 />
+                 {/* Optional third light */}
+                 <spotLight 
+                    position={[0, -20, 0]} 
+                    intensity={150} 
+                    color="#2E8B57" 
+                    angle={0.5} 
+                    penumbra={1} 
+                    distance={100} 
+                    decay={2} 
+                    castShadow={false} 
+                 />
 
                 <PointCloudEffects />
             </Canvas>

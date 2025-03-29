@@ -21,29 +21,40 @@ export default function HomePage() {
   return (
     <main className="flex min-h-screen flex-col items-center bg-[#F5F7FA]">
 
-      {/* Hero Section - MODIFIED FOR LIVE VISUALIZATION */}
+      {/* Hero Section - With Live Visualization AND Buttons */}
       <section
-        className="w-full relative text-center py-24 md:py-36 px-4 text-white overflow-hidden" // Added relative, overflow-hidden
-        // Remove background image style here
+        className="w-full relative text-center py-24 md:py-36 px-4 text-white overflow-hidden" // Keep relative, overflow-hidden
       >
         {/* Live Visualization Component - positioned behind text */}
         <HeroVisualization />
 
         {/* Content container - positioned above the visualization */}
         <div className="container mx-auto max-w-4xl relative z-10">
-           {/* Add a subtle background to text container if needed for readability */}
-           {/* <div className="bg-black bg-opacity-30 p-6 rounded-lg inline-block"> */}
              <h1 className="text-4xl md:text-5xl font-bold font-['Montserrat'] mb-4">
                GLOBAL COLLECTIVE INTELLIGENCE NETWORK
              </h1>
              <p className="text-lg md:text-xl font-['Open_Sans'] mb-8 max-w-2xl mx-auto">
                Building the infrastructure for a post-labor economy through collective intelligence and decentralized governance.
              </p>
-             {/* Call to Action Buttons */}
+
+             {/* === ADDED BUTTONS BACK HERE === */}
              <div className="flex flex-col sm:flex-row justify-center gap-4">
-               {/* ... buttons ... */}
+               <Link
+                 href="/visualization-hub" // Or appropriate link
+                 // Accent Orange button from design system [cite: 7]
+                 className="px-8 py-3 bg-[#FF7F50] text-white font-semibold rounded-md hover:bg-opacity-80 transition-colors font-['Open_Sans']"
+               >
+                 Explore the Network
+               </Link>
+               <Link
+                 href="/get-involved"
+                 // White outline button (good contrast on dark background) [cite: 7]
+                 className="px-8 py-3 bg-transparent border-2 border-white text-white font-semibold rounded-md hover:bg-white hover:text-[#1A5F7A] transition-colors font-['Open_Sans']"
+               >
+                 Get Involved
+               </Link>
              </div>
-           {/* </div> */}
+             {/* ============================== */}
         </div>
       </section>
 
