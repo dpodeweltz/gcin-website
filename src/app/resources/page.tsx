@@ -76,6 +76,20 @@ export default function ResourcesPage() {
             </div>
           </section>
 
+
+          {/* *** ADDED FAQ Link Section *** */}
+          <section>
+             <h2 className="text-3xl font-semibold font-['Montserrat'] text-[#1A5F7A] mb-4 border-b pb-2">
+                Frequently Asked Questions
+             </h2>
+             <div className="p-4 border rounded-md shadow-sm hover:shadow-md transition-shadow bg-gradient-to-r from-white to-gray-50">
+                 <h3 className="text-xl font-semibold font-['Montserrat'] text-[#2E8B57] mb-1">Have Questions?</h3>
+                 <p className="text-sm font-['Open_Sans'] text-[#4A4A4A] mb-2">Find answers to common questions about GCIN&apos;s vision, approach, technology, and governance.</p>
+                 <Link href="/faq" className="text-sm font-semibold text-[#FF7F50] hover:underline">Read the FAQ</Link>
+              </div>
+          </section>
+          {/* *** END FAQ Link Section *** */}
+
           {/* Blog Insights Section */}
           <section>
             <h2 className="text-3xl font-semibold font-['Montserrat'] text-[#1A5F7A] mb-4 border-b pb-2">
