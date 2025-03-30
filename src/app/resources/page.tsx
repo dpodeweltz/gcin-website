@@ -1,5 +1,5 @@
 // src/app/resources/page.tsx
-import Image from 'next/image'; // Import if using Image for placeholders/icons
+// import Image from 'next/image'; // Import if using Image for placeholders/icons
 import Link from 'next/link';   // Import for links
 
 // Placeholder data - replace with actual fetched data later

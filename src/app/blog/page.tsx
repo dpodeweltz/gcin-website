@@ -1,6 +1,6 @@
 // src/app/blog/page.tsx
 import Link from 'next/link';
-import Image from 'next/image'; // If blog cards will have images
+// import Image from 'next/image'; // If blog cards will have images
 
 // Reusable placeholder component for blog post cards
 // (Could be imported from a shared components folder if used elsewhere)
