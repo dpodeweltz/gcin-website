@@ -1,5 +1,5 @@
 // src/app/team/page.tsx
-import Image from 'next/image'; // Import if using Image for placeholders/profiles
+// import Image from 'next/image'; // Import if using Image for placeholders/profiles
 import Link from 'next/link';   // Import for links
 
 // Placeholder component for a team member profile card
